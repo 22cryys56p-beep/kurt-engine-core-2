@@ -1,11 +1,25 @@
-<div align="center">
+# Kurt's English
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Kurt's English website and content system, rewritten as a modern React application.
 
-  <h1>Built with AI Studio</h2>
+## Features
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **Multi-page navigation**: Seamless navigation between Aloha (Home), Who Am I?, Classes, Prices, and Contact pages.
+- **Markdown & Front Matter Parsing**: Pages preserve YAML-style front matter and Markdown content structure.
+- **Original Styling**: Faithfully preserves the minimal, clean typography and layout defined in the original design.
+- **Client-Side Routing**: Hash-based page routing with browser history support.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Development
 
-</div>
+```bash
+npm install
+npm run dev
+```
+
+Dev server runs on port 3000 (`http://localhost:3000`).
+
+## Production Build
+
+```bash
+npm run build
+```

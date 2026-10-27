@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Kurt's English — Shared Layout Stylesheet
+   Option 1: 3D Papercraft / Shadowbox Diorama Implementation
+   Preserves 100% of the original artwork while adding tactile depth,
+   consistent light-source physics, and gentle natural floating motion.
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: url('images/Playtime_background_blue.jpg') repeat;
+    margin: 0;
+    padding: 145px 0 60px 0;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    color: #222222;
+    overflow-x: hidden;
+}
+
+/* Centered 800px Cream-Colored Main Panel with Shadowbox Depth */
+.cream-container {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #FFFBE5;
+    position: relative;
+    /* Realistic multi-stop shadow simulating physical cardboard/wood board */
+    box-shadow: 
+        0 4px 8px -2px rgba(0, 0, 0, 0.12),
+        0 14px 28px -4px rgba(0, 0, 0, 0.18),
+        0 28px 56px -12px rgba(0, 0, 0, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flanking Clouds floating above container in the sky with soft air-cushion shadow */
+.cloud {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(4px 12px 16px rgba(0, 35, 70, 0.24));
+    will-change: transform;
+}
+
+.cloud-left {
+    left: -26px;
+    top: -131px;
+    width: 351px;
+    height: 183px;
+    animation: cloud-float-left 7s ease-in-out infinite alternate;
+}
+
+.cloud-right {
+    right: -7px;
+    top: -95px;
+    width: 285px;
+    height: 142px;
+    animation: cloud-float-right 8.5s ease-in-out infinite alternate;
+}
+
+@keyframes cloud-float-left {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+}
+
+@keyframes cloud-float-right {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(3px); }
+}
+
+/* Header Container (Exactly 337px from container top to wave top) */
+.site-header {
+    position: relative;
+    width: 800px;
+    height: 337px;
+    overflow: visible;
+}
+
+/* Top Navigation Ribbon (Elevated glossy acrylic bar with deep 3D cast shadow) */
+.nav-ribbon-wrapper {
+    position: relative;
+    width: 797px;
+    height: 56px;
+    margin: -1px auto 0 auto;
+    z-index: 20;
+}
+
+.nav-ribbon-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 797px;
+    height: 56px;
+    z-index: 1;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.main-nav {
+    position: relative;
+    z-index: 2;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.main-nav li {
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    font-family: 'Georgia', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFFEFE;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    transition: transform 0.15s ease, text-shadow 0.15s ease;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* Illustrated Header Scene */
+.header-scene {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 800px;
+    height: 337px;
+    overflow: visible;
+}
+
+/* Palm-Tree Logo (Paper cutout shadow effect) */
+.logo-wrapper {
+    position: absolute;
+    left: 218px;
+    top: 70px;
+    width: 382px;
+    height: 217px;
+    z-index: 6;
+    will-change: transform;
+}
+
+.logo-palmtree {
+    width: 382px;
+    height: 217px;
+    display: block;
+    filter: drop-shadow(3px 8px 10px rgba(90, 60, 20, 0.3)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+/* Whale: positioned at top: 282px, submerged 21px into wave */
+.whale-wrapper {
+    position: absolute;
+    left: 163px;
+    top: 282px;
+    width: 198px;
+    height: 76px;
+    z-index: 5;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.scene-whale {
+    width: 198px;
+    height: 76px;
+    display: block;
+    filter: drop-shadow(2px 6px 6px rgba(0, 40, 80, 0.35));
+}
+
+.bobbing-whale {
+    animation: whale-breathe 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes whale-breathe {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-2px) rotate(-0.5deg); }
+}
+
+/* Boat: positioned at top: 249px, submerged 21px into wave */
+.boat-wrapper {
+    position: absolute;
+    left: 619px;
+    top: 249px;
+    width: 117px;
+    height: 109px;
+    z-index: 7;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.scene-boat {
+    width: 117px;
+    height: 109px;
+    display: block;
+    filter: drop-shadow(3px 8px 7px rgba(100, 50, 0, 0.3));
+    transform-origin: 50% 85%;
+}
+
+.floating-boat {
+    animation: boat-rock 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes boat-rock {
+    0% { transform: rotate(-1.5deg) translateY(-1px); }
+    50% { transform: rotate(0.5deg) translateY(1px); }
+    100% { transform: rotate(1.8deg) translateY(-1.5px); }
+}
+
+/* Blue Content Panel & Wave Area starting at top: 337px */
+.content-panel-wrapper {
+    position: relative;
+    width: 726px;
+    margin: 0 auto 50px auto;
+    z-index: 8;
+}
+
+/* Scalloped Wave Top (seamlessly caps the blue water panel) */
+.wave-top {
+    position: relative;
+    z-index: 8;
+    line-height: 0;
+}
+
+.wave-top img {
+    display: block;
+    width: 726px;
+    height: 49px;
+}
+
+/* Textured Blue Content Panel (Seamless extension of the water) */
+.blue-content-panel {
+    background-image: url('images/panel_blue_bg.jpg');
+    background-repeat: repeat;
+    background-size: 229px 355px;
+    width: 726px;
+    padding: 25px 45px 50px 45px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    border-radius: 0 0 3px 3px;
+}
+
+.learning-banner-container {
+    text-align: center;
+    margin-bottom: 30px;
+    will-change: transform;
+}
+
+/* Learning Banner Placard (Elevated board floating with crisp cast shadow) */
+.learning-banner {
+    width: 555px;
+    height: 72px;
+    box-shadow: 
+        0 6px 14px rgba(0, 0, 0, 0.65), 
+        0 2px 4px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    display: inline-block;
+}
+
+/* Page Content Typography & Styling */
+.page-content {
+    color: #0b3455;
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: center;
+}
+
+.page-content h1, 
+.page-content h2, 
+.page-content h3 {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', -apple-system, sans-serif;
+    font-weight: 700;
+    color: #082d4d;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.page-content h3 {
+    font-size: 20px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.page-content p {
+    margin: 14px 0;
+}
+
+.page-content a {
+    color: #0040c0;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.page-content a:hover {
+    color: #002288;
+}
+
+.page-content ul, 
+.page-content ol {
+    display: inline-block;
+    text-align: left;
+    margin: 15px 0;
+    padding-left: 24px;
+}
+
+.page-content hr {
+    border: none;
+    border-top: 1px dashed #7ea4bc;
+    margin: 25px auto;
+    width: 80%;
+}
+
+.page-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+    margin: 10px 0;
+}
+
+/* Footer with Ground Grass Graphic (Foreground tuft shadow) */
+.site-footer {
+    position: relative;
+    width: 800px;
+    line-height: 0;
+    margin-top: auto;
+    filter: drop-shadow(0 -4px 8px rgba(0, 40, 10, 0.2));
+}
+
+.grass-img {
+    display: block;
+    width: 800px;
+    height: 134px;
+}
