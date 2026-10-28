@@ -8,112 +8,51 @@
 </head>
 <body>
 
-<div class="cream-container" id="diorama-stage">
-    <!-- Flanking Clouds floating above container into sky -->
-    <img src="assets/images/cloud1.png" alt="" class="cloud cloud-left parallax-layer" data-depth="0.04" />
-    <img src="assets/images/cloud2.png" alt="" class="cloud cloud-right parallax-layer" data-depth="0.03" />
+<div class="site-wrapper">
+    <div class="page-container">
 
-    <!-- Top Navigation Ribbon -->
-    <header class="site-header">
-        <div class="nav-ribbon-wrapper">
-            <img src="assets/images/nav_ribbon.png" alt="" class="nav-ribbon-bg" />
-            <nav class="main-nav" aria-label="Main Navigation">
-                <ul>
-                    <li><a href="index.html">ALOHA</a></li>
-                    <li><a href="video.html">VIDEO</a></li>
-                    <li><a href="prices.html">PRICES</a></li>
-                    <li><a href="classes-.html">CLASSES/お知らせ</a></li>
-                    <li><a href="students.html">STUDENTS</a></li>
-                    <li><a href="who.html">WHO</a></li>
-                    <li class="last"><a href="where.html">WHERE</a></li>
-                </ul>
-            </nav>
-        </div>
+        <!-- Top Section: Handcrafted Wooden Picture Frame containing Claymation Diorama -->
+        <header class="header-section">
+            <div class="wooden-picture-frame">
+                <div class="frame-molding">
+                    <div class="frame-inner-recess">
+                        <!-- 3D Claymation Scene Artwork (V2: Level water, true logo, single-line banner) -->
+                        <img src="assets/images/claymation_v2.jpg" alt="Kurt's English 3D Diorama" class="claymation-scene-img" />
 
-        <!-- Illustrated Header Scene: Palm Tree Logo, Whale, and Boat -->
-        <div class="header-scene">
-            <div class="logo-wrapper parallax-layer" data-depth="0.015">
-                <img src="assets/images/logo_palmtree.png" alt="Kurt's English" class="logo-palmtree" />
+                        <!-- Live 7-Link 3D Navigation Bar -->
+                        <nav class="clay-nav-bar" aria-label="Main Navigation">
+                            <ul>
+                                <li><a href="index.html">ALOHA</a></li>
+                                <li><a href="video.html">VIDEO</a></li>
+                                <li><a href="prices.html">PRICES</a></li>
+                                <li><a href="classes-.html">CLASSES/お知らせ</a></li>
+                                <li><a href="students.html">STUDENTS</a></li>
+                                <li><a href="who.html">WHO</a></li>
+                                <li class="last"><a href="where.html">WHERE</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
-            <div class="whale-wrapper parallax-layer" data-depth="0.02">
-                <img src="assets/images/Playtime_whale-1.png" alt="Whale" class="scene-whale bobbing-whale" />
-            </div>
-            <div class="boat-wrapper parallax-layer" data-depth="0.025">
-                <img src="assets/images/Playtime_boat-1.png" alt="Boat" class="scene-boat floating-boat" />
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Blue Content Panel with Wave Top (overlapping bottom 21px of whale and boat) -->
-    <div class="content-panel-wrapper">
-        <div class="wave-top">
-            <img src="assets/images/panel_wave_top.png" alt="" />
-        </div>
+        <!-- Light Blue Background Area: 820px wide matching the frame edges,
+             all the way up to the bottom of the frame, and all the way down to the bottom of the screen behind the grass -->
+        <main class="light-blue-content-area">
+            <div class="content-container">
+                <div class="page-content">
+                    {{ content }}
+                </div>
+            </div>
 
-        <main class="blue-content-panel">
-            <div class="learning-banner-container parallax-layer" data-depth="0.01">
-                <img src="assets/images/learning_fun_banner.jpg" alt="Learning English is Fun!" class="learning-banner" />
-            </div>
-            <div class="page-content">
-                {{ content }}
-            </div>
+            <!-- Grass Ground Footer: 820px wide sitting at the bottom with light blue behind it -->
+            <footer class="site-footer">
+                <img src="assets/images/grass.png" alt="" class="grass-img" />
+            </footer>
         </main>
+
     </div>
-
-    <!-- Grass Ground Footer -->
-    <footer class="site-footer">
-        <img src="assets/images/grass.png" alt="" class="grass-img" />
-    </footer>
 </div>
-
-<!-- Subtle 3D Shadowbox Diorama Interaction -->
-<script>
-(function() {
-    const stage = document.getElementById('diorama-stage');
-    const layers = document.querySelectorAll('.parallax-layer');
-    if (!stage || !layers.length) return;
-
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-    let rafId = null;
-
-    function onMouseMove(e) {
-        const rect = stage.getBoundingClientRect();
-        const stageCenterX = rect.left + rect.width / 2;
-        const stageCenterY = rect.top + rect.height / 2;
-        targetX = (e.clientX - stageCenterX);
-        targetY = (e.clientY - stageCenterY);
-        if (!rafId) rafId = requestAnimationFrame(update);
-    }
-
-    function onMouseLeave() {
-        targetX = 0;
-        targetY = 0;
-        if (!rafId) rafId = requestAnimationFrame(update);
-    }
-
-    function update() {
-        currentX += (targetX - currentX) * 0.08;
-        currentY += (targetY - currentY) * 0.08;
-
-        layers.forEach(layer => {
-            const depth = parseFloat(layer.getAttribute('data-depth')) || 0.02;
-            const x = currentX * depth;
-            const y = currentY * depth;
-            layer.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
-        });
-
-        if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
-            rafId = requestAnimationFrame(update);
-        } else {
-            rafId = null;
-        }
-    }
-
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
-    document.addEventListener('mouseleave', onMouseLeave);
-})();
-</script>
 
 </body>
 </html>

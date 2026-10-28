@@ -10,7 +10,7 @@ def parse_markdown(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
         raw = f.read()
 
-    parts = raw.split("---")
+    parts = raw.split("---", 2)
 
     if len(parts) < 3:
         raise ValueError(f"{filepath} is missing front matter.")
